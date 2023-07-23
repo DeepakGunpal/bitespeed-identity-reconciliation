@@ -8,7 +8,7 @@ class Contact {
 
         const query = `SELECT * FROM Contacts WHERE ${keys.map((key, i) => `${key} = $${i + 1}`).join(' OR ')}`;
 
-        return db.manyOrNone(query, values);
+        return db.oneOrNone(query, values);
     }
 
     static async create(params: ContactParams) {
