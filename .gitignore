@@ -1,0 +1,24 @@
+# Ignore built output
+dist/
+build/
+
+# Ignore Node.js dependencies
+node_modules/
+
+# Ignore TypeScript build output
+*.js
+*.js.map
+
+# Ignore any sensitive or environment-specific information (such as configuration files or secrets)
+.env
+config.js
+
+# Ignore any editor or IDE-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
