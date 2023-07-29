@@ -1,7 +1,7 @@
 import db from '../db/db';
 import { ContactParams } from '../interfaces/contactInterface';
 
-class Contact {
+class ContactModel {
     static async find(params: ContactParams) {
         const keys = Object.keys(params);
         const values = Object.values(params);
@@ -9,6 +9,14 @@ class Contact {
         const query = `SELECT * FROM Contacts WHERE ${keys.map((key, i) => `${key} = $${i + 1}`).join(' OR ')}`;
 
         return db.oneOrNone(query, values);
+    }
+    static async findAll(params: ContactParams) {
+        const keys = Object.keys(params);
+        const values = Object.values(params);
+
+        const query = `SELECT * FROM Contacts WHERE ${keys.map((key, i) => `${key} = $${i + 1}`).join(' OR ')}`;
+
+        return db.manyOrNone(query, values);
     }
 
     static async create(params: ContactParams) {
@@ -26,8 +34,8 @@ class Contact {
 
         const query = `UPDATE Contacts SET ${keys.map((key, i) => `${key} = $${i + 1}`)} WHERE id = $${values.length} RETURNING *`;
 
-        return db.none(query, values);
+        return db.one(query, values);
     }
 }
 
-export default Contact;
+export default ContactModel;

@@ -27,4 +27,4 @@ async function setupDatabase() {
   console.log("Database setup complete");
 }
 
-setupDatabase();
+export default setupDatabase;
